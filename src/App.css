@@ -467,7 +467,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 
 
 /* Natural venue polish: Imagine — soft magazine bistro with slim surfaces */
-.site { --button-radius: 0; --card-radius: 8px; --input-radius: 0; --nav-radius: 0; }
+.site { --button-radius: 0; --card-radius: 0; --input-radius: 0; --nav-radius: 0; }
 .theme-imagine { background: linear-gradient(135deg,#fff9ed 0 40%,#f4eaf8 40% 72%,#ffe8df 72%); }
 .theme-imagine .topbar { top: 0; margin-top: 0; border-radius: 0; box-shadow: none; background: rgba(255,249,237,.92); border-width: 0 0 1px; backdrop-filter: blur(8px); }
 .theme-imagine .brand img { height: 58px; }
@@ -475,14 +475,14 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 .theme-imagine .nav-links a:hover { background: transparent; color: #6d4bd3; box-shadow: inset 0 -2px #ff7b6b; }
 .theme-imagine .hero { grid-template-columns: 1fr 1fr; align-items: end; }
 .theme-imagine h1 { font-size: clamp(3rem, 7vw, 7.4rem); line-height: .92; }
-.theme-imagine .hero-panel { border-radius: 4px 70px 4px 4px; box-shadow: none; border: 1px solid rgba(35,23,47,.25); min-height: 560px; }
-.theme-imagine .hero-card { border-radius: 0 34px 0 0; border: 0; background: #fff9ed; box-shadow: none; backdrop-filter: none; }
+.theme-imagine .hero-panel { border-radius: 0; clip-path: polygon(0 0, 94% 0, 100% 10%, 100% 100%, 0 100%); box-shadow: none; border: 1px solid rgba(35,23,47,.25); min-height: 560px; }
+.theme-imagine .hero-card { border-radius: 0; border: 0; background: #fff9ed; box-shadow: none; backdrop-filter: none; }
 .theme-imagine .button { min-height: 44px; border-radius: 0; box-shadow: none; padding-inline: 0; border-bottom: 2px solid currentColor; background: transparent; }
 .theme-imagine .button.primary { color: #6d4bd3; background: transparent; }
 .theme-imagine .button.ghost { color: #23172f; border-width: 0 0 1px; }
 .theme-imagine .hero-actions { gap: 28px; }
 .theme-imagine .story-grid { grid-template-columns: .8fr 1.2fr; gap: 28px; }
-.theme-imagine .story-grid article, .theme-imagine .form-card, .theme-imagine .visit { border-radius: 8px 42px 8px 8px; box-shadow: none; background: rgba(255,249,237,.74); border: 1px solid rgba(35,23,47,.16); }
+.theme-imagine .story-grid article, .theme-imagine .form-card, .theme-imagine .visit { border-radius: 0; box-shadow: none; background: rgba(255,249,237,.74); border: 1px solid rgba(35,23,47,.16); }
 .theme-imagine .menu-list { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px 34px; }
 .theme-imagine .menu-item { min-height: auto; border-radius: 0; box-shadow: none; background: transparent; border-width: 0 0 1px; padding: 18px 0; }
 .theme-imagine .chips { gap: 20px; }
