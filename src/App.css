@@ -112,6 +112,7 @@
 }
 
 .nav-links a,
+.lang-toggle,
 .button,
 .chip {
   min-height: 44px;
@@ -121,7 +122,8 @@
   text-decoration: none;
 }
 
-.nav-links a {
+.nav-links a,
+.lang-toggle {
   display: inline-flex;
   align-items: center;
   padding: 0 13px;
@@ -129,7 +131,9 @@
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
   background: color-mix(in srgb, var(--primary) 14%, transparent);
   color: var(--ink);
 }
@@ -207,6 +211,13 @@ h1 {
 .button.wide { width: 100%; margin-top: 18px; }
 .button.disabled { cursor: not-allowed; opacity: 0.52; transform: none; }
 
+.form-status {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .hero-panel {
   position: relative;
   min-height: var(--hero-height, 560px);
@@ -220,7 +231,7 @@ h1 {
 }
 
 .hero-panel img,
-.generated-hero {
+.venue-hero {
   width: 100%;
   height: 100%;
   min-height: var(--hero-height, 560px);
@@ -234,7 +245,7 @@ h1 {
   background: var(--hero-overlay, linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.62)));
 }
 
-.generated-hero {
+.venue-hero {
   display: grid;
   place-items: center;
   color: color-mix(in srgb, var(--surface) 84%, transparent);
@@ -298,6 +309,10 @@ h1 {
 .menu-item p { color: var(--muted); line-height: 1.55; }
 .menu-item strong { color: var(--primary); font-size: 1.22rem; }
 
+.menu-section,
+.conversion,
+.visit,
+.form-card { scroll-margin-top: 140px; }
 .conversion { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 36px 0 54px; }
 .form-card { padding: clamp(22px, 4vw, 38px); }
 .form-card h2 { font-size: clamp(2rem, 5vw, 4rem); }
@@ -307,6 +322,7 @@ input,select,textarea { width: 100%; border: 1px solid var(--line); border-radiu
 textarea { min-height: 118px; resize: vertical; }
 input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,button:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 70%, white 30%); outline-offset: 3px; }
 .visit { justify-content: space-between; gap: 20px; padding: clamp(22px, 4vw, 36px); }
+.visit-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
 .visit h2 { font-size: clamp(1.8rem, 4vw, 3.6rem); }
 
 .theme-luna {
@@ -386,7 +402,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 }
 .layout-atelier .hero { --copy-size: 0.82fr; --image-size: 1.18fr; }
 .layout-atelier .menu-item { min-height: auto; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; }
-.layout-atelier .generated-hero { background: repeating-linear-gradient(90deg, #111, #111 18px, #171512 18px, #171512 19px); }
+.layout-atelier .venue-hero { background: repeating-linear-gradient(90deg, #111, #111 18px, #171512 18px, #171512 19px); }
 
 .theme-wanda {
   --bg: #120b1f;
@@ -408,14 +424,14 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 }
 .layout-lounge .hero-copy { color: var(--surface); }
 .layout-lounge .hero-copy p:not(.eyebrow) { color: rgba(255, 247, 251, 0.78); }
-.layout-lounge .generated-hero { background: radial-gradient(circle at center, rgba(240, 79, 154, 0.32), transparent 26rem), linear-gradient(135deg, #1c1129, #050308); }
+.layout-lounge .venue-hero { background: radial-gradient(circle at center, rgba(240, 79, 154, 0.32), transparent 26rem), linear-gradient(135deg, #1c1129, #050308); }
 
 @media (max-width: 920px) {
   .topbar { align-items: flex-start; border-radius: 18px; }
   .nav-links { font-size: 0.9rem; }
   .hero,.section-head,.conversion,.story-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 34px; }
-  .hero-panel,.hero-panel img,.generated-hero { min-height: 430px; }
+  .hero-panel,.hero-panel img,.venue-hero { min-height: 430px; }
   .menu-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .layout-bistro .story-grid article:nth-child(2),.layout-fast .hero-panel { transform: none; }
   .theme-atelier {
@@ -436,6 +452,10 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 @media (max-width: 640px) {
   .shell { width: min(100% - 22px, 1180px); }
   .topbar { position: static; }
+  .menu-section,
+  .conversion,
+  .visit,
+  .form-card { scroll-margin-top: 18px; }
   .brand span { display: none; }
   .brand img { max-width: 112px; height: 42px; }
   .nav-links {
@@ -445,16 +465,18 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
     gap: 6px;
     justify-content: stretch;
   }
-  .nav-links a {
+  .nav-links a,
+.lang-toggle {
     justify-content: center;
     background: color-mix(in srgb, var(--surface) 72%, transparent);
   }
   h1 { font-size: clamp(2.7rem, 15vw, 4.8rem); }
-  .hero-panel,.hero-panel img,.generated-hero { min-height: 340px; }
+  .hero-panel,.hero-panel img,.venue-hero { min-height: 340px; }
   .hero-card { left: 14px; right: 14px; bottom: 14px; width: auto; }
   .menu-list { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .visit { align-items: flex-start; flex-direction: column; }
+  .visit-actions { justify-content: flex-start; width: 100%; }
   .button { width: 100%; }
   .layout-lounge .section-head,
   .layout-lounge .section-head p {
@@ -514,7 +536,8 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
     gap: 1px;
     font-size: 0.76rem;
   }
-  .nav-links a {
+  .nav-links a,
+.lang-toggle {
     min-height: 38px;
     padding: 8px 6px;
     text-align: center;
@@ -565,7 +588,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
     overflow: hidden;
   }
   .hero-panel img,
-  .generated-hero { min-height: 320px !important; }
+  .venue-hero { min-height: 320px !important; }
   .hero-card {
     position: static;
     width: 100% !important;
@@ -618,7 +641,15 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
   .shell { width: min(100% - 22px, 1180px); }
   .nav-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   h1 { font-size: clamp(2.05rem, 12vw, 3.25rem) !important; }
-  .hero-panel, .hero-panel img, .generated-hero { min-height: 285px !important; }
+  .hero-panel, .hero-panel img, .venue-hero { min-height: 285px !important; }
+  .chips {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  .chip {
+    flex: 0 1 auto;
+    white-space: normal;
+  }
 }
 
 @media (max-width: 760px) {
@@ -629,3 +660,5 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
   .theme-imagine .visit { background: rgba(255,249,237,.88); }
 }
 
+
+.lang-toggle { cursor: pointer; font: inherit; }
