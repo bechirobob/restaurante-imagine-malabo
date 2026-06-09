@@ -674,3 +674,9 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,
 
 
 .lang-toggle { cursor: pointer; font: inherit; }
+
+.flag-icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 1;
+}
