@@ -149,8 +149,8 @@ function App() {
   const [language, setLanguage] = useState<'es' | 'en'>('es')
   const restaurant = useMemo(() => localizeRestaurant(baseRestaurant, language), [baseRestaurant, language])
   const copy = {
-    es: { skip: 'Saltar a la carta', home: 'inicio', navLabel: 'Navegación principal', conversionLabel: 'Reservas y pedidos', menu: 'Carta', bookings: 'Reservas', orders: 'Pedidos', visit: 'Visita', all: 'Todos', menuTitle: 'Platos destacados para decidir rápido.', menuBody: 'Filtra por categoría y abre una consulta directa si quieres reservar o pedir.', filter: 'Filtrar categorías de carta', booking: 'Reservas', order: 'Pedidos', name: 'Nombre', contact: 'Teléfono o WhatsApp', date: 'Fecha', time: 'Hora', guests: 'Personas', mode: 'Modalidad', details: 'Detalles', bookingCta: 'Abrir mensaje de reserva', orderCta: 'Abrir mensaje de pedido', map: 'Abrir mapa', whatsapp: 'WhatsApp', call: 'Llamar', switcher: 'English', langLabel: 'Cambiar idioma a inglés' },
-    en: { skip: 'Skip to menu', home: 'home', navLabel: 'Main navigation', conversionLabel: 'Bookings and orders', menu: 'Menu', bookings: 'Bookings', orders: 'Orders', visit: 'Visit', all: 'All', menuTitle: 'Featured plates for a quick decision.', menuBody: 'Filter by category, then open a direct request for a table or pickup order.', filter: 'Filter menu categories', booking: 'Bookings', order: 'Orders', name: 'Name', contact: 'Phone or WhatsApp', date: 'Date', time: 'Time', guests: 'Guests', mode: 'Mode', details: 'Details', bookingCta: 'Open booking message', orderCta: 'Open order message', map: 'Open map', whatsapp: 'WhatsApp', call: 'Call', switcher: 'Español', langLabel: 'Switch language to Spanish' },
+    es: { skip: 'Saltar a la carta', home: 'inicio', navLabel: 'Navegación principal', conversionLabel: 'Reservas y pedidos', menu: 'Carta', bookings: 'Reservas', orders: 'Pedidos', visit: 'Visita', all: 'Todos', menuTitle: 'Platos destacados para decidir rápido.', menuBody: 'Filtra por categoría y abre una consulta directa si quieres reservar o pedir.', filter: 'Filtrar categorías de carta', booking: 'Reservas', order: 'Pedidos', name: 'Nombre', contact: 'Teléfono o WhatsApp', date: 'Fecha', time: 'Hora', guests: 'Personas', mode: 'Modalidad', details: 'Detalles', bookingCta: 'Abrir mensaje de reserva', orderCta: 'Abrir mensaje de pedido', itemCta: 'Consultar plato', map: 'Abrir mapa', whatsapp: 'WhatsApp', call: 'Llamar', switcher: 'English', langLabel: 'Cambiar idioma a inglés' },
+    en: { skip: 'Skip to menu', home: 'home', navLabel: 'Main navigation', conversionLabel: 'Bookings and orders', menu: 'Menu', bookings: 'Bookings', orders: 'Orders', visit: 'Visit', all: 'All', menuTitle: 'Featured plates for a quick decision.', menuBody: 'Filter by category, then open a direct request for a table or pickup order.', filter: 'Filter menu categories', booking: 'Bookings', order: 'Orders', name: 'Name', contact: 'Phone or WhatsApp', date: 'Date', time: 'Time', guests: 'Guests', mode: 'Mode', details: 'Details', bookingCta: 'Open booking message', orderCta: 'Open order message', itemCta: 'Ask about dish', map: 'Open map', whatsapp: 'WhatsApp', call: 'Call', switcher: 'Español', langLabel: 'Switch language to Spanish' },
   }[language]
   const [category, setCategory] = useState(copy.all)
   const [booking, setBooking] = useState({ name: '', contact: '', date: '', time: restaurant.times[0], guests: '2 personas' })
@@ -213,6 +213,9 @@ function App() {
   const takeoutMessage = language === 'es'
     ? `Hola ${restaurant.name}, quiero consultar un pedido para llevar. Nombre: ${takeout.name || '[nombre]'}. Contacto: ${takeout.contact || '[teléfono]'}. Modalidad: ${selectedTakeoutMode}. Detalles: ${takeout.notes || '[pedido]'}.`
     : `Hello ${restaurant.name}, I would like to ask about a pickup order. Name: ${takeout.name || '[name]'}. Contact: ${takeout.contact || '[phone]'}. Mode: ${selectedTakeoutMode}. Details: ${takeout.notes || '[order]'}.`
+  const menuInquiryMessage = (item: MenuItem) => language === 'es'
+    ? `Hola ${restaurant.name}, quiero consultar este plato: ${item.name}. ¿Está disponible hoy?`
+    : `Hello ${restaurant.name}, I would like to ask about this dish: ${item.name}. Is it available today?`
 
   return (
     <main className={`site ${restaurant.theme} layout-${restaurant.layout}`}>
@@ -279,6 +282,7 @@ function App() {
                 {item.badge ? <span>{item.badge}</span> : null}
                 <h3>{item.name}</h3>
                 <p>{item.detail}</p>
+                <a className="menu-inquiry" href={waLink(restaurant, menuInquiryMessage(item))} target="_blank" rel="noreferrer">{copy.itemCta}</a>
               </div>
               {item.price ? <strong>{item.price}</strong> : null}
             </article>

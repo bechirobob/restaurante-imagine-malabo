@@ -307,6 +307,8 @@ h1 {
 .menu-item { min-height: var(--menu-height, 245px); display: flex; flex-direction: column; justify-content: space-between; padding: 22px; }
 .menu-item h3 { margin: 10px 0 8px; font-size: 1.48rem; line-height: 1.05; }
 .menu-item p { color: var(--muted); line-height: 1.55; }
+.menu-inquiry { display: inline-flex; margin-top: 10px; color: var(--secondary); font-size: 0.86rem; font-weight: 950; text-underline-offset: 0.22em; }
+.menu-inquiry:hover,.menu-inquiry:focus-visible { color: var(--primary); }
 .menu-item strong { color: var(--primary); font-size: 1.22rem; }
 
 .menu-section,
