@@ -230,7 +230,7 @@ function App() {
           <a href="#reservas">{copy.bookings}</a>
           <a href="#pedidos">{copy.orders}</a>
           <a href="#visita">{copy.visit}</a>
-          <button className="lang-toggle" type="button" aria-label={copy.langLabel} title={copy.langLabel} onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}><span className="flag-icon" aria-hidden="true">{language === 'es' ? '🇬🇧' : '🇪🇸'}</span></button>
+          <button className="lang-toggle" type="button" aria-label={copy.langLabel} onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}>{language === 'es' ? '🇬🇧' : '🇪🇸'}</button>
         </div>
       </nav>
 
